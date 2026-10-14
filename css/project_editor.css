@@ -1,0 +1,255 @@
+/*
+ * File: css/project_editor.css
+ * Description: Defines page-specific layout and editor styles for the saved project editor route.
+ * Primary Owner: Liam Klein
+ * Team: Team 418
+ */
+
+.editor-container {
+  display: flex;
+  gap: 1.5rem;
+  width: min(calc(100% - 2rem), 1400px);
+  margin: 1.5rem auto 2rem;
+}
+
+.editor-sidebar {
+  flex: 0 0 200px;
+  background: #1a1a1a;
+  border-radius: var(--radius-xl);
+  padding: 0;
+}
+
+.editor-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.editor-info {
+  background: #1a1a1a;
+  border: none;
+  border-radius: var(--radius-xl);
+  box-shadow: none;
+  padding: 1.5rem;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.editor-info h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.editor-project-type {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0 0 1rem;
+}
+
+.editor-role-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #5ab576;
+  color: #fff;
+}
+
+.editor-role-badge.viewer {
+  background: #666;
+  color: #fff;
+}
+
+.editor-role-badge.editor {
+  background: #ff9800;
+  color: #fff;
+}
+
+.editor-role-badge.admin {
+  background: #9c27b0;
+  color: #fff;
+}
+
+.editor-role-badge.owner {
+  background: #2196f3;
+  color: #fff;
+}
+
+.editor-spawn-panel {
+  margin-top: 1.5rem;
+  border-top: 1px solid #333;
+  padding-top: 1.5rem;
+}
+
+.editor-spawn-label {
+  margin: 0 0 0.6rem;
+  color: #5ab576;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#spawn-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-back-link {
+  margin-top: 1rem;
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #444;
+}
+
+.editor-back-link:hover,
+.editor-back-link:focus-visible {
+  color: #fff;
+  border-color: #666;
+}
+
+.editor-canvas {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  opacity: 1;
+}
+
+.editor-canvas-read-only {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.read-only-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.read-only-overlay span {
+  background: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+}
+
+.spawn-btn {
+  width: 100%;
+  height: 44px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spawn-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+#trash-zone {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 50;
+  user-select: none;
+}
+
+#trash-zone:hover:not(.active),
+#trash-zone.hover:not(.active) {
+  transform: scale(1.1);
+}
+
+#trash-zone.active {
+  transform: scale(1.2);
+}
+
+.card {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  cursor: grab;
+  transition: box-shadow 0.15s;
+}
+
+.card:hover:not(.dragging) {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.dragging {
+  cursor: grabbing;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card.connected {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.card.chain-hover {
+  filter: brightness(1.1);
+}
+
+.snap-indicator {
+  position: absolute;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  pointer-events: none;
+  display: none;
+  z-index: 5;
+}
+
+@media (max-width: 1024px) {
+  .editor-container {
+    flex-direction: column;
+  }
+
+  .editor-sidebar {
+    flex: unset;
+  }
+}
